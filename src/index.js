@@ -7,6 +7,8 @@ import {
   closeDBConnection,
 } from "./services/sqlite.js";
 import router from "./router.js";
+import expressJSDocSwagger from "express-jsdoc-swagger";
+import { options } from "./swagger/swagger.js";
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use(
 );
 app.use(json());
 app.use(urlencoded({ extended: true }));
+expressJSDocSwagger(app)(options);
 
 app.use(router);
 
